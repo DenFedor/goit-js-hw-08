@@ -30,10 +30,10 @@ function onFormSubmit(e) {
 }
 
 function onEmailInput(e) {
-  userFormData[e.target.email] = e.target.value;
+  userFormData[e.target.name] = e.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(userFormData));
 }
 function onTextAreaInput(e) {
-  userFormData[e.target.message] = e.target.value;
+  userFormData[e.target.name] = e.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(userFormData));
 }
