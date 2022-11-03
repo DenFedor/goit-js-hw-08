@@ -20,6 +20,7 @@ function onFormSubmit(e) {
     e.preventDefault();
     return;
   }
+  e.preventDefault();
   e.target.reset();
   console.log(userFormData);
   localStorage.removeItem(STORAGE_KEY);
