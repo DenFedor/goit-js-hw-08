@@ -10,12 +10,8 @@ refs.form.addEventListener(`submit`, onFormSubmit);
 refs.form.addEventListener(`input`, throttle(onUserInput, 500));
 if (localStorage.getItem(STORAGE_KEY)) {
   userFormData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  userFormData.email
-    ? (refs.input.value = userFormData.email)
-    : (refs.input.value = '');
-  userFormData.message
-    ? (refs.textarea.value = userFormData.message)
-    : (refs.input.value = '');
+  refs.input.value = userFormData.email ?? '';
+  refs.textarea.value = userFormData.message ?? '';
 }
 function onFormSubmit(e) {
   if (refs.input.value == '' || refs.textarea.value == '') {
