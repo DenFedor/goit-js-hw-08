@@ -7,13 +7,15 @@ const refs = {
 };
 let userFormData = {};
 refs.form.addEventListener(`submit`, onFormSubmit);
-refs.input.addEventListener(`input`, throttle(onEmailInput, 500));
-refs.textarea.addEventListener(`input`, throttle(onTextAreaInput, 500));
-
+refs.form.addEventListener(`input`, throttle(onUserInput, 500));
 if (localStorage.getItem(STORAGE_KEY)) {
   userFormData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  refs.input.value = userFormData['email'];
-  refs.textarea.value = userFormData['message'];
+  userFormData.email
+    ? (refs.input.value = userFormData.email)
+    : (refs.input.value = '');
+  userFormData.message
+    ? (refs.textarea.value = userFormData.message)
+    : (refs.input.value = '');
 }
 function onFormSubmit(e) {
   if (refs.input.value == '' || refs.textarea.value == '') {
@@ -29,11 +31,7 @@ function onFormSubmit(e) {
   });
 }
 
-function onEmailInput(e) {
-  userFormData[e.target.name] = e.target.value;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(userFormData));
-}
-function onTextAreaInput(e) {
+function onUserInput(e) {
   userFormData[e.target.name] = e.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(userFormData));
 }
